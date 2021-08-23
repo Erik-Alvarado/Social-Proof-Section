@@ -1,218 +1,329 @@
-main{
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+main {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  @include breakpoint-down(x-small) {
+    height: 100%;
+  }
+  .background {
+    position: absolute;
+    @include breakpoint-down(small) {
+      position: fixed;
+      z-index: -1;
+    }
+    &:first-child {
+      top: 0;
+      left: 0;
+    }
+    &:last-child {
+      bottom: 0;
+      right: 0;
+    }
+  }
+  .container {
+    margin: 100px 200px;
+    opacity: 0;
+    @include breakpoint-down(large) {
+      padding: 0 40px;
+    }
+    @include breakpoint-down(small) {
+      padding: 0 25px;
+    }
     @include breakpoint-down(x-small) {
-        height: 100%;
+      margin: 100px 0px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .background {
-        position: absolute;
-        @include breakpoint-down(small) {
-            position: fixed;
-            z-index: -1;
-        }
-        &:first-child {
-            top: 0;
-            left: 0;
-        }
-        &:last-child {
-            bottom: 0;
-            right: 0;
-        }
+    &.intro {
+      opacity: 1;
+      transition: ease 1s;
     }
-    .container {
-        margin: 100px 200px;
+    .top {
+      width: 1250px;
+      height: 300px;
+      display: flex;
+      justify-content: space-between;
+      // @include breakpoint-down(large) {
+      //     height: 250px;
+      // }
+      @include breakpoint-down(x-small) {
+        flex-direction: column;
+        height: 650px;
+        justify-content: revert;
+        align-items: center;
+        text-align: center;
+      }
+      .user-text {
+        animation: fadeLeft ease 1s;
+
         @include breakpoint-down(x-small) {
-            margin: 100px 0px 0;
-            display: flex;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        h1 {
+          width: 400px;
+          font-size: 3rem;
+          color: $deepMagenta;
+          margin-bottom: 10px;
+          @include breakpoint-down(medium) {
+            font-size: 2.5rem;
+            width: 350px;
+          }
+          @include breakpoint-down(small) {
+            width: 300px;
+            font-size: 2.25rem;
+          }
+          @include breakpoint-down(x-small) {
+            font-size: 3rem;
+            width: 400px;
+          }
+        }
+        p {
+          width: 475px;
+          color: $darkGrayMagenta;
+          line-height: 22px;
+          font-weight: 500;
+          @include breakpoint-down(medium) {
+            width: 350px;
+          }
+          @include breakpoint-down(small) {
+            width: 300px;
+          }
+          @include breakpoint-down(x-small) {
+            width: 400px;
+            text-align: justify;
+          }
+        }
+      }
+      .ratings {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        @include breakpoint-down(x-small) {
+          align-items: stretch;
+          margin-top: 25px;
+        }
+        .rating {
+          background-color: $lightGrayMagenta;
+          padding: 20px 80px 20px 30px;
+          border-radius: 8px;
+          display: flex;
+          align-items: baseline;
+          margin-top: 5px;
+          margin-bottom: 10px;
+          opacity: 0;
+          @include breakpoint-down(large) {
+            padding: 20px 50px;
+          }
+          @include breakpoint-down(medium) {
+            padding: 20px 10px;
+          }
+          @include breakpoint-down(x-small) {
+            padding: 20px 80px;
             flex-direction: column;
             align-items: center;
-        }
-        .top {
-            width: 1250px;
-            height: 300px;
-            display: flex;
-            justify-content: space-between;
-            // @include breakpoint-down(large) {
-            //     height: 250px;
-            // }
+          }
+          .stars {
+            height: 15px;
+            width: 100px;
+            margin-right: 10px;
+            background-repeat: space;
+            background-image: url("/images/icon-star.svg");
+          }
+          .rating-text {
+            font-weight: 700;
+            color: $deepMagenta;
             @include breakpoint-down(x-small) {
-                flex-direction: column;
-                height: 650px;
-                justify-content: revert;
-                align-items: center;
-                text-align: center;
+              margin-top: 15px;
             }
-            .user-text {
-                @include breakpoint-down(x-small) {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-            h1 {
-                width: 400px;
-                font-size: 3rem;
-                color: $deepMagenta;
-                margin-bottom: 10px;
+          }
+          &:nth-child(1) {
+            margin-right: 150px;
+            animation: fadeRight 1s ease;
+            animation-fill-mode: forwards;
+            @media (max-width: 1120px) {
+              margin-right: 75px;
             }
-            p {
-                width: 475px;
-                color: $darkGrayMagenta;
-                line-height: 22px;
-                font-weight: 500;
-                @include breakpoint-down(x-small) {
-                    width: 400px;
-                }
+            @include breakpoint-down(medium) {
+              margin-right: 50px;
+              width: 100%;
             }
+            @include breakpoint-down(small) {
+              margin-right: 0;
             }
-            .ratings {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                @include breakpoint-down(x-small) {
-                    align-items: stretch;
-                    margin-top: 25px;
-                }
-                .rating {
-                    background-color: $lightGrayMagenta;
-                    padding: 20px 100px 20px 30px;
-                    border-radius: 8px;
-                    display: flex;
-                    align-items: baseline;
-                    margin-top: 5px;
-                    margin-bottom: 10px;
-                    @include breakpoint-down(x-small) {
-                        padding: 20px 80px;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-                    .stars {
-                        height: 15px;
-                        width: 100px;
-                        margin-right: 10px;
-                        background-repeat: space;
-                        background-image: url('/images/icon-star.svg');
-                    }
-                    .rating-text {
-                        font-weight: 700;
-                        color: $deepMagenta;
-                        @include breakpoint-down(x-small) {
-                            margin-top: 15px;
-                        }
-                    }
-                    &:nth-child(1) {
-                        margin-right: 100px;
-                        @include breakpoint-down(x-small) {
-                            margin-right: 0;
-                        }
-                    }
-                    &:nth-child(2) {
-                        margin-right: 50px;
-                        @include breakpoint-down(x-small) {
-                            margin-right: 0;
-                        }
-                    }
-                }
+          }
+          &:nth-child(2) {
+            margin-right: 50px;
+            animation: fadeRight 1s ease;
+            animation-delay: 0.3s;
+            animation-fill-mode: forwards;
+            @media (max-width: 1120px) {
+              margin-right: 25px;
             }
+            @include breakpoint-down(medium) {
+              margin-right: 25px;
+              width: 100%;
+            }
+            @include breakpoint-down(small) {
+              margin-right: 0;
+            }
+          }
+          &:nth-child(3) {
+            animation: fadeRight 1s ease;
+            animation-delay: 0.6s;
+            animation-fill-mode: forwards;
+            @include breakpoint-down(medium) {
+              width: 100%;
+            }
+          }
         }
-        .bottom {
-            width: 1250px;
-            height: 300px;
-            // @media (max-width: 1441px) {
-            //     height: 250px;
-            // }
-            @include breakpoint-down(x-small) {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .reviews {
-                display: flex;
-                justify-content: space-between;
+      }
+    }
+    .bottom {
+      width: 1250px;
+      height: 300px;
+      // @media (max-width: 1441px) {
+      //     height: 250px;
+      // }
+      @include breakpoint-down(x-small) {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .reviews {
+        display: flex;
+        justify-content: space-between;
 
-                @include breakpoint-down(x-small) {
-                    flex-direction: column;
-                }
-                .review {
-                    padding: 30px;
-                    width: 400px;
-                    height: 225px;
-                    background-color: $deepMagenta;
-                    border-radius: 10px;
-                    box-shadow: 0 0 6px rgba(0,0,0,0.2);
-                    margin-bottom: 15px;
-                    
-                    .review-header {
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 25px;
-                        .reviewer {
-                            font-weight: 700;
-                            margin-left: 25px;
-                            display: flex;
-                            flex-direction: column;
-                            color: $base;
-                            span {
-                                font-weight: 400;
-                                color: $softPink;
-                            }
-                        }
-                    }
-                    p {
-                        line-height: 22px;
-                        color: $lightGrayMagenta;
-                    }
-                    &:nth-child(2) {
-                        margin-top: 30px;
-                        @include breakpoint-down(x-small) {
-                            margin-top: 0;
-                        }
-                    }
-                    &:nth-child(3) {
-                        margin-top: 60px;
-                        @include breakpoint-down(x-small) {
-                            margin-top: 0;
-                        }
-                    }
-                }
-                .review-icon-1, .review-icon-2, .review-icon-3 {
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 50px;
-                    background-position: center;
-                    background-size: cover;
-                }
-                .review-icon-1 {
-                    background-image: url('/images/image-colton.jpg');
-                }
-                .review-icon-2 {
-                    background-image: url('/images/image-irene.jpg');
-                }
-                .review-icon-3 {
-                    background-image: url('/images/image-anne.jpg');
-                }
-            }
-        }
-    }
-    .attribution {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        text-align: center;
-        margin-bottom: 15px;
-        font-weight: 700;
         @include breakpoint-down(x-small) {
-            width: 300px;
-            position: relative;
-            padding-top: 50px;
+          flex-direction: column;
         }
-        a {
-            text-decoration: none;
-            color: $darkGrayMagenta;
+        .review {
+          padding: 30px;
+          width: 400px;
+          height: 225px;
+          background-color: $deepMagenta;
+          border-radius: 10px;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+          margin-bottom: 15px;
+          opacity: 0;
+
+          @include breakpoint-down(large) {
+            height: 100%;
+            margin: 0 10px 15px 10px;
+          }
+          @include breakpoint-down(small) {
+            padding: 15px;
+            margin: 0 5px 15px 5px;
+          }
+          @include breakpoint-down(x-small) {
+            margin: 0 0 15px 0;
+          }
+
+          .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+
+            @include breakpoint-down(medium) {
+              flex-direction: column;
+            }
+            @include breakpoint-down(small) {
+              margin-bottom: 15px;
+            }
+            @include breakpoint-down(x-small) {
+              flex-direction: row;
+            }
+            .reviewer {
+              font-weight: 700;
+              margin-left: 25px;
+              display: flex;
+              flex-direction: column;
+              color: $base;
+              @include breakpoint-down(medium) {
+                margin-left: 0;
+                text-align: center;
+              }
+              @include breakpoint-down(x-small) {
+                margin-left: 25px;
+                text-align: start;
+              }
+              span {
+                font-weight: 400;
+                color: $softPink;
+              }
+            }
+          }
+          p {
+            line-height: 22px;
+            color: $lightGrayMagenta;
+          }
+          &:nth-child(1) {
+            animation: fadeUp ease 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+          }
+          &:nth-child(2) {
+            margin-top: 30px;
+            animation: fadeUp ease 1s;
+            animation-delay: 1.3s;
+            animation-fill-mode: forwards;
+            @include breakpoint-down(x-small) {
+              margin-top: 0;
+            }
+          }
+          &:nth-child(3) {
+            margin-top: 60px;
+            animation: fadeUp ease 1s;
+            animation-delay: 1.6s;
+            animation-fill-mode: forwards;
+            @include breakpoint-down(x-small) {
+              margin-top: 0;
+            }
+          }
         }
+        .review-icon-1,
+        .review-icon-2,
+        .review-icon-3 {
+          width: 45px;
+          height: 45px;
+          border-radius: 50px;
+          background-position: center;
+          background-size: cover;
+        }
+        .review-icon-1 {
+          background-image: url("/images/image-colton.jpg");
+        }
+        .review-icon-2 {
+          background-image: url("/images/image-irene.jpg");
+        }
+        .review-icon-3 {
+          background-image: url("/images/image-anne.jpg");
+        }
+      }
     }
+  }
+  .attribution {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+    @include breakpoint-down(x-small) {
+      width: 300px;
+      position: relative;
+      padding-top: 50px;
+    }
+    a {
+      text-decoration: none;
+      color: $darkGrayMagenta;
+    }
+  }
 }
